@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vincular con HassDNS Alexa",
+        "description": "Indica la **URL pública HTTPS** de este Home Assistant (por ejemplo `https://casa.example.com`). La integración crea un token de enlace seguro automáticamente — pegarás URL + token en la página de vinculación de {cloud}.",
+        "data": {
+          "url": "URL pública de este Home Assistant",
+          "cloud_url": "Cloud HassDNS",
+          "locale": "Idioma de Alexa"
+        }
+      }
+    },
+    "error": {
+      "token_failed": "No se pudo crear el token de enlace"
+    },
+    "abort": {
+      "single_instance_allowed": "Solo se permite un enlace HassDNS Alexa"
+    }
+  }
+}

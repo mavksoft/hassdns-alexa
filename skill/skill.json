@@ -1,0 +1,164 @@
+{
+  "vendorId": "M22UAR6Q59533X",
+  "manifest": {
+    "manifestVersion": "1.0",
+    "publishingInformation": {
+      "isAvailableWorldwide": true,
+      "distributionCountries": [],
+      "distributionMode": "PUBLIC",
+      "category": "SMART_HOME",
+      "testingInstructions": "Prerequisitos: una instancia Home Assistant accesible por HTTPS (subdominio HassDNS recomendado). En la vinculacion de cuenta introduzca la URL HTTPS de su Home Assistant y el token de enlace generado por el panel HassDNS del addon. Tras vincular, pida 'Alexa, descubre dispositivos': las entidades marcadas como expuestas en el panel se importan. Controle: 'Alexa, enciende la luz'.",
+      "locales": {
+        "en-US": {
+          "name": "HassDNS Cloud for Home Assistant",
+          "summary": "Control your Home Assistant devices with Alexa",
+          "description": "HassDNS Cloud links your Home Assistant to Alexa: discover your entities and control lights, switches, thermostats, locks, covers, media players, scenes and more by voice. Sensors can also trigger Alexa routines.",
+          "examplePhrases": [
+            "Alexa, discover my devices",
+            "Alexa, turn on the living room light",
+            "Alexa, set the thermostat to 70 degrees"
+          ],
+          "keywords": [
+            "home assistant",
+            "hassdns",
+            "smart home",
+            "hass"
+          ]
+        },
+        "es-ES": {
+          "name": "HassDNS Cloud para Home Assistant",
+          "summary": "Controla tus dispositivos de Home Assistant con Alexa",
+          "description": "HassDNS Cloud conecta tu Home Assistant con Alexa: descubre tus entidades y controla luces, enchufes, termostatos, cerraduras, persianas, media players y escenas con la voz. Los sensores tambien pueden disparar rutinas de Alexa.",
+          "examplePhrases": [
+            "Alexa, descubre mis dispositivos",
+            "Alexa, enciende la luz del salon",
+            "Alexa, pon el termostato a 21 grados"
+          ],
+          "keywords": [
+            "home assistant",
+            "hassdns",
+            "hogar inteligente",
+            "hass"
+          ]
+        },
+        "de-DE": {
+          "name": "HassDNS Cloud fur Home Assistant",
+          "summary": "Steuere deine Home-Assistant-Gerate mit Alexa",
+          "description": "HassDNS Cloud verbindet dein Home Assistant mit Alexa: Entitaeten entdecken und Lampen, Schalter, Thermostate, Schloesser, Rolllaeden, Mediaplayer und Szenen per Sprache steuern. Sensoren koennen auch Alexa-Routinen ausloesen.",
+          "examplePhrases": [
+            "Alexa, entdecke meine Gerate",
+            "Alexa, schalte das Wohnzimmerlicht ein",
+            "Alexa, stelle den Thermostat auf 21 Grad"
+          ],
+          "keywords": [
+            "home assistant",
+            "hassdns",
+            "smart home",
+            "hass"
+          ]
+        },
+        "fr-FR": {
+          "name": "HassDNS Cloud pour Home Assistant",
+          "summary": "Controlez vos appareils Home Assistant avec Alexa",
+          "description": "HassDNS Cloud relie votre Home Assistant a Alexa : decouvrez vos entites et pilotez lumieres, prises, thermostats, serrures, volets, lecteurs multimedia et scenes a la voix. Les capteurs peuvent aussi declencher des routines Alexa.",
+          "examplePhrases": [
+            "Alexa, decouvre mes appareils",
+            "Alexa, allume la lumiere du salon",
+            "Alexa, mets le thermostat a 21 degres"
+          ],
+          "keywords": [
+            "home assistant",
+            "hassdns",
+            "maison connectee",
+            "hass"
+          ]
+        },
+        "it-IT": {
+          "name": "HassDNS Cloud per Home Assistant",
+          "summary": "Controlla i tuoi dispositivi Home Assistant con Alexa",
+          "description": "HassDNS Cloud collega il tuo Home Assistant ad Alexa: scopri le tue entita e controlla luci, prese, termostati, serrature, tapparelle, media player e scene con la voce. I sensori possono anche attivare le routine di Alexa.",
+          "examplePhrases": [
+            "Alexa, trova i miei dispositivi",
+            "Alexa, accendi la luce del soggiorno",
+            "Alexa, imposta il termostato a 21 gradi"
+          ],
+          "keywords": [
+            "home assistant",
+            "hassdns",
+            "casa intelligente",
+            "hass"
+          ]
+        },
+        "pt-BR": {
+          "name": "HassDNS Cloud para Home Assistant",
+          "summary": "Controle seus dispositivos Home Assistant com a Alexa",
+          "description": "HassDNS Cloud conecta seu Home Assistant a Alexa: descubra suas entidades e controle luzes, interruptores, termostatos, fechaduras, persianas, media players e cenas por voz. Sensores tambem podem acionar rotinas da Alexa.",
+          "examplePhrases": [
+            "Alexa, descubra meus dispositivos",
+            "Alexa, acenda a luz da sala",
+            "Alexa, ajuste o termostato para 21 graus"
+          ],
+          "keywords": [
+            "home assistant",
+            "hassdns",
+            "casa inteligente",
+            "hass"
+          ]
+        }
+      }
+    },
+    "apis": {
+      "smartHome": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:237204045715:function:hassdns-alexa-proxy"
+        },
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:eu-west-1:237204045715:function:hassdns-alexa-proxy"
+            }
+          },
+          "FE": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-west-2:237204045715:function:hassdns-alexa-proxy"
+            }
+          }
+        },
+        "protocolVersion": "3"
+      }
+    },
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": true,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "https://ha-cloud.es/privacy.php",
+          "termsOfUseUrl": "https://ha-cloud.es/terms.php"
+        },
+        "es-ES": {
+          "privacyPolicyUrl": "https://ha-cloud.es/privacy.php",
+          "termsOfUseUrl": "https://ha-cloud.es/terms.php"
+        },
+        "de-DE": {
+          "privacyPolicyUrl": "https://ha-cloud.es/privacy.php",
+          "termsOfUseUrl": "https://ha-cloud.es/terms.php"
+        },
+        "fr-FR": {
+          "privacyPolicyUrl": "https://ha-cloud.es/privacy.php",
+          "termsOfUseUrl": "https://ha-cloud.es/terms.php"
+        },
+        "it-IT": {
+          "privacyPolicyUrl": "https://ha-cloud.es/privacy.php",
+          "termsOfUseUrl": "https://ha-cloud.es/terms.php"
+        },
+        "pt-BR": {
+          "privacyPolicyUrl": "https://ha-cloud.es/privacy.php",
+          "termsOfUseUrl": "https://ha-cloud.es/terms.php"
+        }
+      }
+    }
+  }
+}
