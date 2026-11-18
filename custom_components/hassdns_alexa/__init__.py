@@ -31,6 +31,7 @@ from .const import (
     WS_TYPE_ENTITIES,
     WS_TYPE_LINK,
     WS_TYPE_SET_EXPOSE,
+    WS_TYPE_SET_TOKEN,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -41,6 +42,7 @@ async def async_setup(hass: HomeAssistant, config: dict) -> bool:
     websocket_api.async_register_command(hass, ws_entities)
     websocket_api.async_register_command(hass, ws_set_expose)
     websocket_api.async_register_command(hass, ws_link)
+    websocket_api.async_register_command(hass, ws_set_token)
     return True
 
 
@@ -180,3 +182,23 @@ def ws_link(hass, connection, msg):
         connection.send_error(msg["id"], "not_loaded", "Integration not loaded")
         return
     connection.send_result(msg["id"], cfg.link_info())
+
+
+@callback
+@websocket_api.websocket_command(
+    {
+        vol.Required("type"): WS_TYPE_SET_TOKEN,
+        vol.Required("token"): str,
+    }
+)
+def ws_set_token(hass, connection, msg):
+    """Store the link token created via auth/long_lived_access_token."""
+    entries = hass.config_entries.async_entries(DOMAIN)
+    if not entries:
+        connection.send_error(msg["id"], "not_loaded", "Integration not loaded")
+        return
+    entry = entries[0]
+    hass.config_entries.async_update_entry(
+        entry, data={**entry.data, "link_token": msg["token"]}
+    )
+    connection.send_result(msg["id"], {"ok": True})

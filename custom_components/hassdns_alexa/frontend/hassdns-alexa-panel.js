@@ -21,6 +21,7 @@ class HassdnsAlexaPanel extends LitElement {
     _link: { state: true },
     _q: { state: true },
     _showHelp: { state: true },
+    _busy: { state: true },
   };
 
   constructor() {
@@ -57,6 +58,24 @@ class HassdnsAlexaPanel extends LitElement {
     } catch (err) {
       this._toast(err.message || err.code || "Error");
     }
+  }
+
+  async _genToken() {
+    this._busy = true;
+    try {
+      const res = await this.hass.callWS({
+        type: "auth/long_lived_access_token",
+        client_name: "HassDNS Alexa",
+        lifespan: 3650,
+      });
+      const token = res.result ?? res;
+      await this.hass.callWS({ type: `${WS}/set_token`, token });
+      this._link = { ...this._link, link_token: token };
+      this._toast("Link token created");
+    } catch (err) {
+      this._toast(err.message || err.code || "Token error");
+    }
+    this._busy = false;
   }
 
   _copy(e) {
@@ -122,12 +141,15 @@ class HassdnsAlexaPanel extends LitElement {
                 <ha-icon-button label="Copy" path="mdi:content-copy"
                   data-text=${this._link.ha_url} @click=${this._copy}></ha-icon-button>
               </div>
-              <div class="row">
-                <span class="lbl">Token</span>
-                <code class="tok">${this._link.link_token}</code>
-                <ha-icon-button label="Copy" path="mdi:content-copy"
-                  data-text=${this._link.link_token} @click=${this._copy}></ha-icon-button>
-              </div>
+              ${this._link.link_token
+                ? html`<div class="row">
+                    <span class="lbl">Token</span>
+                    <code class="tok">${this._link.link_token}</code>
+                    <ha-icon-button label="Copy" path="mdi:content-copy"
+                      data-text=${this._link.link_token} @click=${this._copy}></ha-icon-button>
+                  </div>`
+                : html`<button class="gen" ?disabled=${this._busy}
+                    @click=${this._genToken}>${this._busy ? "Generating…" : "Generate link token"}</button>`}
             </div>`
           : ""}
 
@@ -195,6 +217,10 @@ class HassdnsAlexaPanel extends LitElement {
       border-radius: 50%; background: var(--card-background-color); transition: transform .15s; }
     .sw.on { background: var(--primary-color); }
     .sw.on::after { transform: translateX(12px); }
+    .gen { background: var(--primary-color); color: var(--text-primary-color, #fff);
+      border: 0; border-radius: 8px; padding: 10px 18px; font: inherit; font-weight: 500;
+      cursor: pointer; margin-top: 6px; }
+    .gen:disabled { opacity: .6; cursor: default; }
     .toast { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%);
       background: var(--card-background-color); color: var(--primary-text-color);
       border: 1px solid var(--divider-color); border-radius: 10px; padding: 8px 16px;

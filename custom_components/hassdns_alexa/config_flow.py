@@ -30,30 +30,23 @@ class HassdnsAlexaConfigFlow(ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     async def async_step_user(self, user_input=None) -> ConfigFlowResult:
-        """Ask for locale/cloud; generate the link token automatically."""
+        """Ask for the public URL, cloud and locale."""
         self._async_abort_entries_match()
         errors: dict[str, str] = {}
 
         if user_input is not None:
-            try:
-                link_token = (
-                    await self.hass.auth.async_create_long_lived_access_token(
-                        "HassDNS Alexa", 3650
-                    )
-                )
-            except Exception as err:  # noqa: BLE001 — surface any auth API failure
-                _LOGGER.error("Could not create link token: %s", err)
-                errors["base"] = "token_failed"
-            else:
-                return self.async_create_entry(
-                    title="HassDNS Alexa",
-                    data={
-                        CONF_CLOUD_URL: user_input[CONF_CLOUD_URL].rstrip("/"),
-                        CONF_LOCALE: user_input.get(CONF_LOCALE, DEFAULT_LOCALE),
-                        CONF_LINK_TOKEN: link_token,
-                        CONF_HA_URL: user_input[CONF_URL].rstrip("/"),
-                    },
-                )
+            # The link token is created later from the panel via the stable
+            # `auth/long_lived_access_token` websocket command — the auth
+            # manager API signature varies across HA versions.
+            return self.async_create_entry(
+                title="HassDNS Alexa",
+                data={
+                    CONF_CLOUD_URL: user_input[CONF_CLOUD_URL].rstrip("/"),
+                    CONF_LOCALE: user_input.get(CONF_LOCALE, DEFAULT_LOCALE),
+                    CONF_LINK_TOKEN: "",
+                    CONF_HA_URL: user_input[CONF_URL].rstrip("/"),
+                },
+            )
 
         return self.async_show_form(
             step_id="user",
