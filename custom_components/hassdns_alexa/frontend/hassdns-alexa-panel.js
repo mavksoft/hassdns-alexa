@@ -13,6 +13,20 @@ const DOMAIN_ICONS = {
   input_button: "mdi:gesture-tap-button", button: "mdi:gesture-tap-button", alert: "mdi:alert",
 };
 
+const DOMAIN_LABELS = {
+  light: "Lights", switch: "Switches", climate: "Climate", cover: "Covers",
+  lock: "Locks", fan: "Fans", media_player: "Media players", scene: "Scenes",
+  script: "Scripts", automation: "Automations", vacuum: "Vacuums",
+  camera: "Cameras", humidifier: "Humidifiers", water_heater: "Water heaters",
+  sensor: "Sensors", binary_sensor: "Binary sensors", input_boolean: "Helpers",
+  button: "Buttons", input_button: "Buttons", group: "Groups", alert: "Alerts",
+};
+
+const DOMAIN_ORDER = ["light", "switch", "climate", "cover", "lock", "fan",
+  "media_player", "scene", "script", "automation", "vacuum", "humidifier",
+  "water_heater", "camera", "sensor", "binary_sensor", "input_boolean",
+  "button", "input_button", "group", "alert"];
+
 class HassdnsAlexaPanel extends LitElement {
   static properties = {
     hass: { attribute: false },
@@ -101,11 +115,17 @@ class HassdnsAlexaPanel extends LitElement {
       : this._entities;
     const groups = new Map();
     for (const e of list) {
-      const g = e.area || "";
+      const g = e.domain;
       if (!groups.has(g)) groups.set(g, []);
       groups.get(g).push(e);
     }
-    return groups;
+    return new Map(
+      [...groups.entries()].sort(
+        (a, b) =>
+          (DOMAIN_ORDER.indexOf(a[0]) + 1 || 99) -
+          (DOMAIN_ORDER.indexOf(b[0]) + 1 || 99)
+      )
+    );
   }
 
   render() {
@@ -154,15 +174,15 @@ class HassdnsAlexaPanel extends LitElement {
           : ""}
 
         ${[...this._filtered.entries()].map(
-          ([area, ents]) => html`
+          ([domain, ents]) => html`
             <section>
-              <h3>${area || "No area"} <span>${ents.length}</span></h3>
+              <h3>${DOMAIN_LABELS[domain] || domain} <span>${ents.length}</span></h3>
               <div class="grid">
                 ${ents.map(
                   (e) => html`
                     <button class="ent ${e.exposed ? "on" : ""}" data-eid=${e.entity_id}
                       @click=${this._toggle}>
-                      <ha-icon icon=${DOMAIN_ICONS[e.domain] || "mdi:eye"}></ha-icon>
+                      <ha-icon icon=${e.icon || DOMAIN_ICONS[e.domain] || "mdi:eye"}></ha-icon>
                       <span class="n">${e.name}</span>
                       <span class="d">${e.entity_id}</span>
                       <span class="sw ${e.exposed ? "on" : ""}"></span>

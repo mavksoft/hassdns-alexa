@@ -143,6 +143,7 @@ def ws_entities(hass, connection, msg):
             "entity_id": eid,
             "name": state.name,
             "domain": eid.split(".", 1)[0],
+            "icon": state.attributes.get("icon", ""),
             "area": areas.get(area_id, ""),
             "exposed": bool(cfg.exposed.get(eid)),
         })
