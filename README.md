@@ -58,3 +58,27 @@ Eventos proactivos: HA → ha-cloud.es/api/proactive_token.php → token LWA
 ## Skill ID
 
 `amzn1.ask.skill.68ca3cbb-a3fc-409a-b131-0877c42bb365`
+
+## Operación (deploy, herramientas, demo)
+
+- **ask-cli**: `_tools/node/bin/ask` (node local del repo — no hay node global
+  en el Mac; `export PATH=_tools/node/bin:$PATH` primero). Config/perfil LWA
+  en `~/.ask/cli_config` (vendor `M22UAR6Q59533X`, aws_profile
+  `hassdns-alexa`).
+- **Lambdas**: `hassdns-alexa-proxy` en us-east-1 / eu-west-1 / us-west-2,
+  trigger `alexa-connectedhome.amazon.com` ligado al skill ID. Deploy:
+  `lambda/deploy.sh`.
+- **Cloud** (`ha-cloud.es` en Plesk): deploy manual por `scp` — httpdocs NO
+  es git checkout. Config secreta fuera de git en
+  `httpdocs/config/config.php` (LWA + demo_ha_* + crypt_key).
+  OJO: `.htaccess` lleva `SetEnvIf Authorization` — sin él PHP-FPM no ve el
+  Bearer (bug 18-nov-2026).
+- **Skill en certificación**: el manifest queda bloqueado mientras dure la
+  revisión (403 a PUT manifest). `testingInstructions` va a nivel
+  `publishingInformation` (no por locale). La página OAuth tiene botón
+  "Vincular demo" para testers (creds server-side, `config.demo_ha_*`).
+- **HA demo** `demo.ha-cloud.es:8443`: Docker `ha-demo` en Debian12 Proxmox
+  VM200 (`192.168.4.4`); Apache vhost :8443 con LE → proxy a :8123; forward
+  router WAN 8443→192.168.4.4:8443; ufw allow 8443. Detalles: AGENTS.md
+  global + fix_logs #3069/#3070 de CodeLink.
+- CodeLink proyecto: `hassdns-alexa`.
