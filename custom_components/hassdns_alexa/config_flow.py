@@ -11,6 +11,7 @@ from homeassistant.const import CONF_URL
 
 from .const import (
     CONF_CLOUD_URL,
+    CONF_HA_URL,
     CONF_LINK_TOKEN,
     CONF_LOCALE,
     DEFAULT_CLOUD_URL,
@@ -35,24 +36,22 @@ class HassdnsAlexaConfigFlow(ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             try:
-                token_obj = await self.hass.auth.async_create_long_lived_access_token(
-                    "HassDNS Alexa", 3600 * 24 * 365 * 10
+                link_token = (
+                    await self.hass.auth.async_create_long_lived_access_token(
+                        "HassDNS Alexa", 3650
+                    )
                 )
-                link_token = token_obj.access_token
             except Exception as err:  # noqa: BLE001 — surface any auth API failure
                 _LOGGER.error("Could not create link token: %s", err)
                 errors["base"] = "token_failed"
             else:
-                ha_url = user_input.get(CONF_URL) or str(
-                    self.hass.config.api.base_url or ""
-                )
                 return self.async_create_entry(
                     title="HassDNS Alexa",
                     data={
                         CONF_CLOUD_URL: user_input[CONF_CLOUD_URL].rstrip("/"),
                         CONF_LOCALE: user_input.get(CONF_LOCALE, DEFAULT_LOCALE),
                         CONF_LINK_TOKEN: link_token,
-                        "ha_url": ha_url.rstrip("/"),
+                        CONF_HA_URL: user_input[CONF_URL].rstrip("/"),
                     },
                 )
 

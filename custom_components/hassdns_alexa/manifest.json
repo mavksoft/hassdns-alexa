@@ -3,7 +3,7 @@
   "name": "HassDNS Alexa",
   "codeowners": ["@mavksoft"],
   "config_flow": true,
-  "dependencies": [],
+  "dependencies": ["http", "websocket_api"],
   "documentation": "https://ha-cloud.es/",
   "integration_type": "service",
   "iot_class": "cloud_push",

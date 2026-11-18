@@ -7,9 +7,10 @@ import logging
 import aiohttp
 
 from homeassistant.components.alexa.config import AbstractConfig
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.network import NoURLAvailableError, get_url
 
-from .const import CONF_CLOUD_URL, CONF_LINK_TOKEN, CONF_LOCALE, DEFAULT_LOCALE
+from .const import CONF_CLOUD_URL, CONF_HA_URL, CONF_LINK_TOKEN, CONF_LOCALE, DEFAULT_LOCALE
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -50,9 +51,19 @@ class HassdnsAlexaConfig(AbstractConfig):
         """Locale from the config entry."""
         return self._entry.data.get(CONF_LOCALE, DEFAULT_LOCALE)
 
+    @callback
+    def user_identifier(self) -> str:
+        """Identify this config."""
+        return f"hassdns-alexa:{self._entry.entry_id}"
+
+    @callback
     def should_expose(self, entity_id: str) -> bool:
         """Only explicitly exposed entities."""
         return bool(self.exposed.get(entity_id))
+
+    @callback
+    def async_invalidate_access_token(self) -> None:
+        """No-op: the cloud refreshes LWA tokens on expiry."""
 
     async def async_get_access_token(self) -> str | None:
         """Fetch a proactive-events token from the cloud."""
@@ -79,8 +90,14 @@ class HassdnsAlexaConfig(AbstractConfig):
 
     def link_info(self) -> dict:
         """Data the panel shows the user for linking."""
+        ha_url = self._entry.data.get(CONF_HA_URL) or ""
+        if not ha_url:
+            try:
+                ha_url = get_url(self.hass, prefer_external=True)
+            except NoURLAvailableError:
+                ha_url = ""
         return {
             "cloud_url": self._entry.data[CONF_CLOUD_URL],
             "link_token": self._entry.data.get(CONF_LINK_TOKEN, ""),
-            "ha_url": str(self.hass.config.api.base_url) if self.hass.config.api else "",
+            "ha_url": ha_url,
         }
