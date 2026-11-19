@@ -1,5 +1,4 @@
 {
-  "vendorId": "M22UAR6Q59533X",
   "manifest": {
     "manifestVersion": "1.0",
     "publishingInformation": {
@@ -23,7 +22,9 @@
             "hassdns",
             "smart home",
             "hass"
-          ]
+          ],
+          "smallIconUri": "https://ha-cloud.es/assets/img/icon-108.png",
+          "largeIconUri": "https://ha-cloud.es/assets/img/icon-512.png"
         },
         "es-ES": {
           "name": "HassDNS Cloud para Home Assistant",
@@ -39,7 +40,9 @@
             "hassdns",
             "hogar inteligente",
             "hass"
-          ]
+          ],
+          "smallIconUri": "https://ha-cloud.es/assets/img/icon-108.png",
+          "largeIconUri": "https://ha-cloud.es/assets/img/icon-512.png"
         },
         "de-DE": {
           "name": "HassDNS Cloud fur Home Assistant",
@@ -55,7 +58,9 @@
             "hassdns",
             "smart home",
             "hass"
-          ]
+          ],
+          "smallIconUri": "https://ha-cloud.es/assets/img/icon-108.png",
+          "largeIconUri": "https://ha-cloud.es/assets/img/icon-512.png"
         },
         "fr-FR": {
           "name": "HassDNS Cloud pour Home Assistant",
@@ -71,7 +76,9 @@
             "hassdns",
             "maison connectee",
             "hass"
-          ]
+          ],
+          "smallIconUri": "https://ha-cloud.es/assets/img/icon-108.png",
+          "largeIconUri": "https://ha-cloud.es/assets/img/icon-512.png"
         },
         "it-IT": {
           "name": "HassDNS Cloud per Home Assistant",
@@ -87,7 +94,9 @@
             "hassdns",
             "casa intelligente",
             "hass"
-          ]
+          ],
+          "smallIconUri": "https://ha-cloud.es/assets/img/icon-108.png",
+          "largeIconUri": "https://ha-cloud.es/assets/img/icon-512.png"
         },
         "pt-BR": {
           "name": "HassDNS Cloud para Home Assistant",
@@ -103,7 +112,9 @@
             "hassdns",
             "casa inteligente",
             "hass"
-          ]
+          ],
+          "smallIconUri": "https://ha-cloud.es/assets/img/icon-108.png",
+          "largeIconUri": "https://ha-cloud.es/assets/img/icon-512.png"
         }
       }
     },

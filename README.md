@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/mavksoft/hassdns-alexa/main/brands/custom_integrations/hassdns_alexa/icon.png" width="128" alt="HassDNS"></p>
+
 # HassDNS Alexa
 
 Puente Alexa ↔ Home Assistant con panel visual de exposición de entidades,

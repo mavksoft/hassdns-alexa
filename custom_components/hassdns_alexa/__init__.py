@@ -85,6 +85,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                     "custom_components", DOMAIN, "frontend/hassdns-alexa-panel.js"
                 ),
                 cache_headers=False,
+            ),
+            StaticPathConfig(
+                f"/api/{DOMAIN}/static/logo.png",
+                hass.config.path("custom_components", DOMAIN, "frontend/logo.png"),
+                cache_headers=True,
             )
         ]
     )

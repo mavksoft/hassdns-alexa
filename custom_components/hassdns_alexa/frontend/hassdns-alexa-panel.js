@@ -133,7 +133,7 @@ class HassdnsAlexaPanel extends LitElement {
     return html`
       <div class="page">
         <header>
-          <ha-icon icon="mdi:amazon-alexa"></ha-icon>
+          <img class="brand-logo" src="/api/hassdns_alexa/static/logo.png" alt="HassDNS" />
           <div class="h-text">
             <h1>HassDNS Alexa</h1>
             <p class="sub">${exposed} / ${this._entities.length} entities exposed</p>
@@ -202,6 +202,7 @@ class HassdnsAlexaPanel extends LitElement {
     .page { max-width: 1100px; margin: 0 auto; padding: 16px 20px 80px; }
     header { display: flex; align-items: center; gap: 14px; padding: 6px 0 18px; flex-wrap: wrap; }
     header > ha-icon { --mdc-icon-size: 34px; color: var(--primary-color); }
+    .brand-logo { width: 40px; height: 40px; border-radius: 9px; flex: none; }
     h1 { font-size: 1.4rem; margin: 0; }
     .sub { margin: 0; font-size: .85rem; color: var(--secondary-text-color); }
     .search { flex: 1; min-width: 200px; }

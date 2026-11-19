@@ -1,13 +1,18 @@
 {
   "domain": "hassdns_alexa",
   "name": "HassDNS Alexa",
-  "codeowners": ["@mavksoft"],
+  "codeowners": [
+    "@mavksoft"
+  ],
   "config_flow": true,
-  "dependencies": ["http", "websocket_api"],
+  "dependencies": [
+    "http",
+    "websocket_api"
+  ],
   "documentation": "https://ha-cloud.es/",
   "integration_type": "service",
   "iot_class": "cloud_push",
   "issue_tracker": "https://github.com/mavksoft/hassdns-alexa/issues",
   "requirements": [],
-  "version": "0.1.2"
+  "version": "0.1.3"
 }
