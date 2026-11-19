@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/mavksoft/hassdns-alexa/main/brands/custom_integrations/hassdns_alexa/logo.png" width="320" alt="HassDNS"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/mavksoft/hassdns-alexa/main/custom_components/hassdns_alexa/brand/logo.png" width="320" alt="HassDNS"></p>
 
 # HassDNS Alexa
 
