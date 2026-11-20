@@ -58,5 +58,8 @@ class HassdnsAlexaConfigFlow(ConfigFlow, domain=DOMAIN):
                 }
             ),
             errors=errors,
-            description_placeholders={"cloud": DEFAULT_CLOUD_URL},
+            description_placeholders={
+                "cloud": DEFAULT_CLOUD_URL,
+                "example_url": "https://casa.example.com",
+            },
         )

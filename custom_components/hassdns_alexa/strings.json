@@ -8,10 +8,6 @@
           "url": "Public URL of this Home Assistant",
           "cloud_url": "HassDNS cloud",
           "locale": "Alexa locale"
-        },
-        "description_placeholders": {
-          "example_url": "https://casa.example.com",
-          "cloud": "HassDNS Cloud"
         }
       }
     },
