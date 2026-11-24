@@ -91,10 +91,15 @@ curl -sk https://demo.ha-cloud.es:8443/api/alexa/smart_home -X POST \
 - i18n: 6 idiomas (es/en/de/fr/it/pt) en toda cadena nueva — `lib/i18n/`.
 - Commit + push inmediato; registrar cada fix en CodeLink (`hassdns-alexa`).
 
-## Pendientes (estado 19-nov-2026)
+## Pendientes (estado 24-nov-2026)
 
-- ⏳ Amazon certificación: skill enviada, en revisión (ETA en consola ASK).
-  Si piden cuenta de pruebas → botón "Vincular demo" de la página OAuth.
+- ⏳ Amazon: `RErhjFEa` FAILED 24-nov por "lack of credentials" — el tester
+  no tenía credenciales de prueba. Corregido: testingInstructions ahora
+  incluyen la URL del demo + el LLAT literal + el botón "Vincular demo"
+  como camino fácil, más login UI `amazon-cert`/`AmazonCert-2026`.
+  **Reenviada 24-nov ~16:20 UTC** (publicationStatus=CERTIFICATION).
+- OJO: `/tmp/at.txt` del Debian se limpió por systemd-tmpfiles — el LLAT
+  demo vive ahora solo en `config.php` del Plesk (`demo_ha_token`).
 - ⏳ HACS catálogo: PR `hacs/default#14507` abierto (brand/ local desde
   HA 2026.3 — el repo brands ya no acepta customs).
 - ⏳ Renovar cert ZeroSSL demo ~feb-2027 (manual, DNS-01).
