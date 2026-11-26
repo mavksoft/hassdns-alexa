@@ -91,13 +91,17 @@ curl -sk https://demo.ha-cloud.es:8443/api/alexa/smart_home -X POST \
 - i18n: 6 idiomas (es/en/de/fr/it/pt) en toda cadena nueva — `lib/i18n/`.
 - Commit + push inmediato; registrar cada fix en CodeLink (`hassdns-alexa`).
 
-## Pendientes (estado 24-nov-2026)
+## Pendientes (estado 26-nov-2026)
 
-- ⏳ Amazon: `RErhjFEa` FAILED 24-nov por "lack of credentials" — el tester
-  no tenía credenciales de prueba. Corregido: testingInstructions ahora
-  incluyen la URL del demo + el LLAT literal + el botón "Vincular demo"
-  como camino fácil, más login UI `amazon-cert`/`AmazonCert-2026`.
-  **Reenviada 24-nov ~16:20 UTC** (publicationStatus=CERTIFICATION).
+- ⏳ Amazon: `ff2Z5nXv` FAILED 26-nov por dos bugs en authorize.php —
+  (a) el rate-limit `oauth:<ip>` compartía bucket entre testers de Amazon
+  (misma IP de salida → "Demasiados intentos" que nunca caducaba) y
+  (b) credenciales manuales sin `:8443` llegaban al HA de producción.
+  Fix en ha-cloud.es `2781996`: el botón "Vincular demo" queda EXENTO de
+  rate-limit y su tarjeta va primero; el límite manual solo cuenta
+  verificaciones fallidas (20/5min) y `ha_url` sin esquema recibe
+  https:// auto. testingInstructions reordenadas (demo primero).
+  **Reenviada 26-nov ~20:52 UTC** (publicationStatus=CERTIFICATION).
 - OJO: `/tmp/at.txt` del Debian se limpió por systemd-tmpfiles — el LLAT
   demo vive ahora solo en `config.php` del Plesk (`demo_ha_token`).
 - ⏳ HACS catálogo: PR `hacs/default#14507` abierto (brand/ local desde
