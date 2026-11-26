@@ -104,8 +104,10 @@ curl -sk https://demo.ha-cloud.es:8443/api/alexa/smart_home -X POST \
   **Reenviada 26-nov ~20:52 UTC** (publicationStatus=CERTIFICATION).
 - OJO: `/tmp/at.txt` del Debian se limpió por systemd-tmpfiles — el LLAT
   demo vive ahora solo en `config.php` del Plesk (`demo_ha_token`).
-- ⏳ HACS catálogo: PR `hacs/default#14507` abierto (brand/ local desde
-  HA 2026.3 — el repo brands ya no acepta customs).
+- ⏳ HACS catálogo: PR `hacs/default#15025` OPEN (label "New default
+  repository") — la #14507 la cerró el bot por descripción sin el formato
+  exigido; la nueva lleva plantilla checklist [x] + links release v0.1.7 +
+  runs HACS/hassfest. A la espera de revisión humana.
 - ⏳ Renovar cert ZeroSSL demo ~feb-2027 (manual, DNS-01).
 - Rotar el LLAT demo si expira la revisión (está en output histórico de
   sesiones — considerar rotación: `hass --script auth` o long_lived_token API).
