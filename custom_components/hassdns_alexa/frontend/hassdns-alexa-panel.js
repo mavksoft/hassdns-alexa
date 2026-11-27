@@ -676,13 +676,8 @@ var HassdnsAlexaPanel = class extends s4 {
   async _genToken() {
     this._busy = true;
     try {
-      const res = await this.hass.callWS({
-        type: "auth/long_lived_access_token",
-        client_name: "HassDNS Alexa",
-        lifespan: 3650
-      });
-      const token = res.result ?? res;
-      await this.hass.callWS({ type: `${WS}/set_token`, token });
+      const res = await this.hass.callWS({ type: `${WS}/generate_token` });
+      const token = res.token ?? res;
       this._link = { ...this._link, link_token: token };
       this._toast("Link token created");
     } catch (err) {

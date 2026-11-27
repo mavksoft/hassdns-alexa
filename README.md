@@ -29,7 +29,11 @@ La web cloud vive en otro repo privado: `mavksoft/ha-cloud.es`.
 
 ## Vinculación con Alexa
 
-1. En la app Alexa: **Skills → HassDNS Alexa → Habilitar**.
+> **Estado**: la skill pública está en certificación de Amazon — hasta que se
+> publique, este paso solo funciona en desarrollo (dev stage).
+
+1. En la app Alexa: **Skills y juegos → busca "HassDNS Alexa" → Habilitar**
+   (enable to use).
 2. La app abre la página de `ha-cloud.es`: pega la URL y el token del panel.
 3. Alexa redescubre dispositivos → solo llegan las entidades que marcaste
    expuestas en el panel.

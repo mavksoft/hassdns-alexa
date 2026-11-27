@@ -35,9 +35,9 @@ class HassdnsAlexaConfigFlow(ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
 
         if user_input is not None:
-            # The link token is created later from the panel via the stable
-            # `auth/long_lived_access_token` websocket command — the auth
-            # manager API signature varies across HA versions.
+            # The link token is created later from the panel via the
+            # `hassdns_alexa/generate_token` websocket command, which mints it
+            # on a dedicated non-admin system user.
             return self.async_create_entry(
                 title="HassDNS Alexa",
                 data={
