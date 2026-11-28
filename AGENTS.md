@@ -104,15 +104,16 @@ curl -sk https://demo.ha-cloud.es:8443/api/alexa/smart_home -X POST \
   **Reenviada 26-nov ~20:52 UTC** (publicationStatus=CERTIFICATION).
 - OJO: `/tmp/at.txt` del Debian se limpió por systemd-tmpfiles — el LLAT
   demo vive ahora solo en `config.php` del Plesk (`demo_ha_token`).
-- ⏳ HACS catálogo: PR `hacs/default#15025` OPEN. Frenck pidió 4 cambios
-  (27-nov) → resueltos en **v0.1.8**: require_admin en los 4 ws commands,
-  token minteado en usuario sistema dedicado no-admin (GROUP_ID_USER +
-  TOKEN_TYPE_SYSTEM) via `hassdns_alexa/generate_token`, async_remove_entry
-  revoca rt+usuario+store, SmartHomeView/statics a async_setup (cfg lazy,
-  reload limpio). Extra: `endpoint` ahora devuelve el event gateway
-  regional (proactivos estaban rotos por assert de state_report) +
-  proactive_token.php por POST. Comentario publicado esperando su
-  full review pass.
+- ⏳ HACS catálogo: PR `hacs/default#15025` OPEN. Rondas resueltas en
+  v0.1.8 (require_admin, usuario sistema dedicado, view en async_setup,
+  endpoint event gateway + POST proactivos). **ÚNICO bloqueo restante
+  (frenck, 28-nov): la skill tiene que estar LIVE en Amazon** — cuando
+  Amazon publique: quitar la nota de estado del README (blockquote
+  "> **Estado**: ..."), nueva release, re-request review. Amazon
+  `Qd3DwiLD` IN_PROGRESS, ETA ~17-dic-2026.
+- Amazon: `Qd3DwiLD` IN_PROGRESS (submit 26-nov 20:53, ETA 17-dic) —
+  3er intento tras `RErhjFEa` y `ff2Z5nXv` (FAILED: credenciales, luego
+  rate-limit OAuth compartido entre testers — fix `2781996` ha-cloud.es).
 - ⏳ Renovar cert ZeroSSL demo ~feb-2027 (manual, DNS-01).
 - Rotar el LLAT demo si expira la revisión (está en output histórico de
   sesiones — considerar rotación: `hass --script auth` o long_lived_token API).
